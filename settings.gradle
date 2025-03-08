@@ -5,3 +5,12 @@ include ':shared:application'
 
 project(':shared:domain').projectDir = file('./src/shared/src/domain')
 project(':shared:application').projectDir = file('./src/shared/src/application')
+
+
+include ':authentication:domain'
+include ':authentication:application'
+include ':authentication:infrastructure'
+
+project(':authentication:domain').projectDir = file('./src/authentication/src/domain')
+project(':authentication:application').projectDir = file('./src/authentication/src/application')
+project(':authentication:infrastructure').projectDir = file('./src/authentication/src/infrastructure')
