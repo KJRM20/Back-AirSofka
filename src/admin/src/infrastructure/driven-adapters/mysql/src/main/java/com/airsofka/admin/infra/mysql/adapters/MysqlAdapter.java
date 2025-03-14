@@ -30,12 +30,16 @@ public class MysqlAdapter implements IEventRepositoryBookingPort {
         if (existingBooking.isPresent()) {
             BookingEntity updatedBooking = BookingAdapter.toEntity(booking);
             updatedBooking.setId(existingBooking.get().getId());
+            updatedBooking.setReservationCode(booking.getBookingCode().getValue());
             updatedBooking.setState(booking.getState().getValue());
             bookingJpaRepository.save(updatedBooking);
         }
     }
 
-
+    @Override
+    public Booking getBooking(String aggregateId) {
+        return null;
+    }
 
 
 }

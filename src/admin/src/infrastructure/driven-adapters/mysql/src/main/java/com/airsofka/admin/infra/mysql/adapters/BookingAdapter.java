@@ -1,6 +1,9 @@
 package com.airsofka.admin.infra.mysql.adapters;
 
 import com.airsofka.admin.domain.admin.entities.Booking;
+import com.airsofka.admin.domain.admin.values.BookingCode;
+import com.airsofka.admin.domain.admin.values.BookingId;
+import com.airsofka.admin.domain.admin.values.State;
 import com.airsofka.admin.infra.mysql.entities.BookingEntity;
 import com.airsofka.admin.infra.mysql.entities.PaymentEntity;
 
@@ -22,5 +25,12 @@ public class BookingAdapter {
 //        payment.setTotal(booking.getPrice().getValue());
 
         return entity;
+    }
+
+    public static Booking toDomain(BookingEntity entity){
+        return new Booking(
+                BookingId.of(entity.getId()) ,
+                BookingCode.of(entity.getReservationCode()),
+                State.of(entity.getState())
     }
 }

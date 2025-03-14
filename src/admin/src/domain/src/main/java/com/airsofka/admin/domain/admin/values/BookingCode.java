@@ -19,7 +19,7 @@ public class BookingCode implements IValueObject {
     public void validate() {
         ValueValidator.validateStringNotEmpty(value, "BookingCode");
         ValueValidator.validateStringNotBlank(value, "BookingCode");
-        ValueValidator.validateSpecialCharacters(value, "BookingCode");
+//        ValueValidator.validateSpecialCharacters(value, "BookingCode");
     }
 
     public String getValue() {

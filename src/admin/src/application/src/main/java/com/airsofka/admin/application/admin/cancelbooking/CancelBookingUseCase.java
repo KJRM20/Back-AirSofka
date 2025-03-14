@@ -4,8 +4,11 @@ import com.airsofka.admin.application.shared.AdminMapper;
 import com.airsofka.admin.application.shared.BookingResponse;
 import com.airsofka.admin.application.shared.ports.IEventRepositoryBookingPort;
 import com.airsofka.admin.domain.admin.entities.Booking;
+import com.airsofka.admin.domain.admin.values.BookingCode;
+import com.airsofka.admin.domain.admin.values.BookingId;
 import com.airsofka.admin.domain.admin.values.State;
 import com.airsofka.shared.application.ICommandUseCase;
+import com.airsofka.shared.domain.generic.Identity;
 
 public class CancelBookingUseCase implements ICommandUseCase<CancelBookingRequest, BookingResponse> {
 //    private final IEventRepositoryPort repository;
@@ -30,8 +33,16 @@ public class CancelBookingUseCase implements ICommandUseCase<CancelBookingReques
 //                    );
 
 
-                    Booking booking = new Booking();
+
+                    Booking booking = new Booking(
+                            BookingId.of(request.getId()), State.of(request.getState()), BookingCode.of(request.getBookingCode())
+                    );
+
+//                    booking.setBookingCode(BookingCode.of(request.getBookingCode()));
                     booking.setState(State.of("CANCELED"));
+
+//                    booking.setBookingCode(BookingCode.of(request.getBookingCode()));
+
 
                     bookingRepository.updateStatus(booking);
                     bookingRepository.saveBooking(booking);
