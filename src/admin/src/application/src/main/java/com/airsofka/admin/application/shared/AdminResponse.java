@@ -53,7 +53,7 @@ public class AdminResponse {
         private final String bookingCode;
         private final LocalDate creationDate;
         private final LocalDate departureDate;
-        private final String Destination;
+        private final String destination;
         private final String email;
         private final String flightClass;
         private final String origin;
@@ -68,7 +68,7 @@ public class AdminResponse {
             this.bookingCode = bookingCode;
             this.creationDate = creationDate;
             this.departureDate = departureDate;
-            Destination = destination;
+            this.destination = destination;
             this.email = email;
             this.flightClass = flightClass;
             this.origin = origin;
@@ -99,7 +99,7 @@ public class AdminResponse {
         }
 
         public String getDestination() {
-            return Destination;
+            return destination;
         }
 
         public String getEmail() {

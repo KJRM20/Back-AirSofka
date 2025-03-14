@@ -37,9 +37,17 @@ public class ConfirmedBookingAdapter implements IEventConfirmedPort {
                 booking.getDestination(),
                 booking.getReservationCode(),
                 booking.getCreationDate().atStartOfDay(),
-                booking.getPassengers().stream()
-                        .map(passenger -> passenger.getFirstName())
-                        .collect(Collectors.toList())
+                booking.getPayment().getPaymentMethod(),
+                booking.getPassengers().isEmpty() ? null :
+                        (booking.getPassengers().get(0).getFirstName() + " " +
+                                (booking.getPassengers().get(0).getFirstName() != null ? booking.getPassengers().get(0).getLastName() : "")).trim(),
+
+        booking.getPassengers().get(0).getEmail(),
+                booking.getPayment().getTotal().intValue()*0.84
+                ,booking.getPassengers().size(),
+                booking.getPayment().getTotal()
+
         );
+
     }
 }

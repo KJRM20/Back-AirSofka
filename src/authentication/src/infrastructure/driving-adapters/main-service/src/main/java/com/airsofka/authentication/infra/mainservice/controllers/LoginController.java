@@ -14,11 +14,11 @@ import reactor.core.publisher.Mono;
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
-  private final LoginUserUseCase loginUserUseCase;
+    private final LoginUserUseCase loginUserUseCase;
 
-  public LoginController(LoginUserUseCase loginUserUseCase) {
-    this.loginUserUseCase = loginUserUseCase;
-  }
+    public LoginController(LoginUserUseCase loginUserUseCase) {
+        this.loginUserUseCase = loginUserUseCase;
+    }
 
   @PutMapping
   public ResponseEntity<Mono<LoginUserResponse>> execute(@RequestBody LoginUserRequest request) {
