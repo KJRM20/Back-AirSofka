@@ -20,8 +20,8 @@ public class LoginController {
         this.loginUserUseCase = loginUserUseCase;
     }
 
-    @PutMapping
-    public ResponseEntity<Mono<LoginUserResponse>> execute(@RequestBody LoginUserRequest request) {
-        return ResponseEntity.status(HttpStatus.OK).body(loginUserUseCase.execute(request));
-    }
+  @PutMapping
+  public ResponseEntity<Mono<LoginUserResponse>> execute(@RequestBody LoginUserRequest request) {
+    return ResponseEntity.status(HttpStatus.OK).body(loginUserUseCase.execute(request));
+  }
 }
