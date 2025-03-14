@@ -17,8 +17,8 @@ import org.springframework.context.annotation.Configuration;
 public class UseCaseConfig {
 
     @Bean
-    public CancelBookingUseCase cancelBookingUseCase(MongoAdapter adapter, MysqlAdapter mysqlAdapter) {
-        return new CancelBookingUseCase(adapter, mysqlAdapter);
+    public CancelBookingUseCase cancelBookingUseCase(MysqlAdapter mysqlAdapter) {
+        return new CancelBookingUseCase(mysqlAdapter);
     }
 
     @Bean

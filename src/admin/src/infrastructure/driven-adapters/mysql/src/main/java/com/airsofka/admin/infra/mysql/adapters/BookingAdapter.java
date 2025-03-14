@@ -10,16 +10,16 @@ public class BookingAdapter {
 
         entity.setId(booking.getIdentity().getValue());
         entity.setState(booking.getState().getValue());
-        entity.setDestination(booking.getDestination().getValue());
-        entity.setOrigin(booking.getOrigin().getValue());
-        entity.setPassengers(booking.getPassengers().getValue());
-        entity.setArrivalDate(booking.getArrivalDate().getValue());
-        entity.setDepartureDate(booking.getDepartureDate().getValue());
+//        entity.setDestination(booking.getDestination().getValue());
+//        entity.setOrigin(booking.getOrigin().getValue());
+//        entity.setPassengers(booking.getPassengers().getValue());
+//        entity.setArrivalDate(booking.getArrivalDate().getValue());
+//        entity.setDepartureDate(booking.getDepartureDate().getValue());
         entity.setReservationCode(booking.getBookingCode().getValue());
-
-        PaymentEntity payment = new PaymentEntity();
-        payment.setPaymentMethod(booking.getPaymentMethod().getValue());
-        payment.setTotal(booking.getPrice().getValue());
+//
+//        PaymentEntity payment = new PaymentEntity();
+//        payment.setPaymentMethod(booking.getPaymentMethod().getValue());
+//        payment.setTotal(booking.getPrice().getValue());
 
         return entity;
     }

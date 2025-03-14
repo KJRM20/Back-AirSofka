@@ -30,6 +30,7 @@ public class AdminHandler extends DomainActionsContainer {
 
             booking.cancel(BookingCode.of(event.getBookingCode()));
 
+
             admin.setState(State.of(booking.getState().getValue()));
         };
     }
