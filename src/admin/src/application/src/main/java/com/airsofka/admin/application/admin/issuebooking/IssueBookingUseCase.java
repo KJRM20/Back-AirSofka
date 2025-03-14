@@ -1,48 +1,32 @@
 package com.airsofka.admin.application.admin.issuebooking;
 
 import com.airsofka.admin.application.shared.AdminMapper;
-import com.airsofka.admin.application.shared.AdminResponse;
+import com.airsofka.admin.application.shared.BookingResponse;
 import com.airsofka.admin.application.shared.ports.IEventRepositoryBookingPort;
-import com.airsofka.admin.application.shared.ports.IEventRepositoryPort;
-import com.airsofka.admin.domain.admin.Admin;
 import com.airsofka.admin.domain.admin.entities.Booking;
+import com.airsofka.admin.domain.admin.values.BookingCode;
+import com.airsofka.admin.domain.admin.values.BookingId;
 import com.airsofka.admin.domain.admin.values.State;
 import com.airsofka.shared.application.ICommandUseCase;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
-public class IssueBookingUseCase implements ICommandUseCase<IssueBookingRequest, Mono<AdminResponse>> {
-    private final IEventRepositoryPort repository;
+public class IssueBookingUseCase implements ICommandUseCase<IssueBookingRequest, BookingResponse> {
     private final IEventRepositoryBookingPort bookingRepository;
 
-    public IssueBookingUseCase(IEventRepositoryPort repository, IEventRepositoryBookingPort bookingRepository) {
-        this.repository = repository;
+    public IssueBookingUseCase(IEventRepositoryBookingPort bookingRepository) {
         this.bookingRepository = bookingRepository;
     }
 
     @Override
-    public Mono<AdminResponse> execute(IssueBookingRequest request) {
-        return repository.findEventsByAggregateId(request.getAggregateId())
-                .collectList()
-                .map(events -> {
-                    Admin admin = Admin.from(request.getAggregateId(), events);
+    public BookingResponse execute(IssueBookingRequest request) {
+        Booking booking = new Booking(
+                BookingId.of(request.getId()), State.of(request.getState()), BookingCode.of(request.getBookingCode())
+        );
 
-                    admin.issueBooking(
-                            request.getId(),
-                            request.getBookingCode(),
-                            request.getState()
-                    );
+        booking.setState(State.of("ISSUED"));
 
-                    Booking booking = new Booking();
-                    booking.setState(State.of("ISSUED"));
+        bookingRepository.updateStatusIssue(booking.getIdentity().getValue());
+        bookingRepository.saveBooking(booking);
 
-                    bookingRepository.updateStatus(booking);
-                    bookingRepository.saveBooking(booking);
-
-                    admin.getUncommittedEvents().forEach(repository::save);
-                    admin.markEventsAsCommitted();
-
-                    return AdminMapper.mapToAdmin(admin);
-                });
+        return AdminMapper.mapToBooking(booking);
     }
 }

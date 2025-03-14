@@ -32,8 +32,8 @@ public class UseCaseConfig {
     }
 
     @Bean
-    public IssueBookingUseCase issueBookingUseCase(MongoAdapter adapter, MysqlAdapter mysqlAdapter) {
-        return new IssueBookingUseCase(adapter, mysqlAdapter);
+    public IssueBookingUseCase issueBookingUseCase( MysqlAdapter mysqlAdapter) {
+        return new IssueBookingUseCase(mysqlAdapter);
     }
 
     @Bean

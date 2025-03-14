@@ -4,7 +4,6 @@ import com.airsofka.admin.application.shared.ports.IEventRepositoryBookingPort;
 import com.airsofka.admin.domain.admin.entities.Booking;
 import com.airsofka.admin.infra.mysql.entities.BookingEntity;
 import com.airsofka.admin.infra.mysql.repositories.BookingJpaRepository;
-import reactor.core.publisher.Mono;
 
 import java.util.Optional;
 
@@ -25,14 +24,20 @@ public class MysqlAdapter implements IEventRepositoryBookingPort {
     }
 
     @Override
-    public void updateStatus(Booking booking) {
-        Optional<BookingEntity> existingBooking = bookingJpaRepository.findById(booking.getIdentity().getValue());
-        if (existingBooking.isPresent()) {
-            BookingEntity updatedBooking = BookingAdapter.toEntity(booking);
-            updatedBooking.setId(existingBooking.get().getId());
-            updatedBooking.setReservationCode(booking.getBookingCode().getValue());
-            updatedBooking.setState(booking.getState().getValue());
-            bookingJpaRepository.save(updatedBooking);
+    public void updateStatus(String bookingId) {
+       BookingEntity existingBooking = bookingJpaRepository.findById(bookingId).orElse(null);
+        if (existingBooking != null) {
+            existingBooking.setState("CANCELED");
+            bookingJpaRepository.save(existingBooking);
+        }
+    }
+
+    @Override
+    public void updateStatusIssue(String bookingId) {
+        BookingEntity existingBooking = bookingJpaRepository.findById(bookingId).orElse(null);
+        if (existingBooking != null) {
+            existingBooking.setState("ISSUED");
+            bookingJpaRepository.save(existingBooking);
         }
     }
 
