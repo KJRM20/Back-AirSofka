@@ -44,6 +44,9 @@ public class ConfirmedBookingAdapter implements IEventConfirmedPort {
 
         booking.getPassengers().get(0).getEmail(),
                 booking.getPayment().getTotal().intValue()*0.84
+                ,booking.getPassengers().size()
+
         );
+
     }
 }
