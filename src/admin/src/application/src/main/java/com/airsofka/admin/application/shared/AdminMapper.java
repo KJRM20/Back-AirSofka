@@ -1,6 +1,7 @@
 package com.airsofka.admin.application.shared;
 
 import com.airsofka.admin.domain.admin.Admin;
+import com.airsofka.admin.domain.admin.entities.Booking;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,4 +34,13 @@ public class AdminMapper {
                 admin.getTaxes().getValue()
         );
     }
+
+    public static BookingResponse mapToBooking(Booking booking) {
+        return new BookingResponse(
+                booking.getIdentity().getValue(),
+                booking.getBookingCode().getValue(),
+                booking.getState().getValue()
+        );
+    }
+
 }

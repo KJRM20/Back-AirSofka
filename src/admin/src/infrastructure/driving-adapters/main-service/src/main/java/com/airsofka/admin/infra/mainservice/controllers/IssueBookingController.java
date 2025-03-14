@@ -2,9 +2,8 @@ package com.airsofka.admin.infra.mainservice.controllers;
 
 import com.airsofka.admin.application.admin.issuebooking.IssueBookingRequest;
 import com.airsofka.admin.application.admin.issuebooking.IssueBookingUseCase;
-import com.airsofka.admin.application.shared.AdminResponse;
+import com.airsofka.admin.application.shared.BookingResponse;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api/issue-booking")
@@ -16,7 +15,7 @@ public class IssueBookingController {
     }
 
     @PutMapping
-    public Mono<AdminResponse> issueBooking(@RequestBody IssueBookingRequest request) {
+    public BookingResponse issueBooking(@RequestBody IssueBookingRequest request) {
         return useCase.execute(request);
     }
 

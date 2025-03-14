@@ -50,6 +50,12 @@ public class Booking extends Entity<BookingId> {
         this.state = state;
     }
 
+    public Booking(BookingId identity, State state, BookingCode bookingCode) {
+        super(identity);
+        this.state = state;
+        this.bookingCode = bookingCode;
+    }
+
     public Booking() {
         super(new BookingId());
     }

@@ -49,7 +49,7 @@ public class BookingEntity {
     @Column(nullable = false)
     private String destinationFlightId;
 
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
     private List<PassengerEntity> passengers;
 
     @OneToOne(cascade = CascadeType.ALL)
