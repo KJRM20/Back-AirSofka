@@ -18,6 +18,7 @@ public class BookingConfirmedResponse {
         private String email;
         private double taxes;
         private int numberPassengers;
+        private double totalPrice;
 
     public String getPaymentMethod() {
         return paymentMethod;
@@ -35,7 +36,15 @@ public class BookingConfirmedResponse {
         this.email = email;
     }
 
-    public BookingConfirmedResponse(String id, String state, LocalDateTime departureDate, LocalDateTime arrivalDate, String origin, String destination, String reservationCode, LocalDateTime creationDate, String paymentMethod, String passengers, String email, double taxes, int numberPassengers) {
+    public double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public BookingConfirmedResponse(String id, String state, LocalDateTime departureDate, LocalDateTime arrivalDate, String origin, String destination, String reservationCode, LocalDateTime creationDate, String paymentMethod, String passengers, String email, double taxes, int numberPassengers, double totalPrice) {
         this.id = id;
         this.state = state;
         this.departureDate = departureDate;
@@ -49,6 +58,7 @@ public class BookingConfirmedResponse {
         this.email = email;
         this.taxes = taxes;
         this.numberPassengers = numberPassengers;
+        this.totalPrice = totalPrice;
     }
 
     public int getNumberPassengers() {
