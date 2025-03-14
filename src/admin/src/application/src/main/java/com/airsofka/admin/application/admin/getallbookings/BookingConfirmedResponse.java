@@ -13,9 +13,28 @@ public class BookingConfirmedResponse {
         private String destination;
         private String reservationCode;
         private LocalDateTime creationDate;
-        private List<String> passengers;
+        private String paymentMethod;
+        private String passengers;
+        private String email;
+        private double taxes;
 
-    public BookingConfirmedResponse(String id, String state, LocalDateTime departureDate, LocalDateTime arrivalDate, String origin, String destination, String reservationCode, LocalDateTime creationDate, List<String> passengers) {
+    public String getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public BookingConfirmedResponse(String id, String state, LocalDateTime departureDate, LocalDateTime arrivalDate, String origin, String destination, String reservationCode, LocalDateTime creationDate, String paymentMethod, String passengers, String email, double taxes) {
         this.id = id;
         this.state = state;
         this.departureDate = departureDate;
@@ -24,7 +43,18 @@ public class BookingConfirmedResponse {
         this.destination = destination;
         this.reservationCode = reservationCode;
         this.creationDate = creationDate;
+        this.paymentMethod = paymentMethod;
         this.passengers = passengers;
+        this.email = email;
+        this.taxes = taxes;
+    }
+
+    public double getTaxes() {
+        return taxes;
+    }
+
+    public void setTaxes(double taxes) {
+        this.taxes = taxes;
     }
 
     public BookingConfirmedResponse() {
@@ -94,11 +124,11 @@ public class BookingConfirmedResponse {
         this.creationDate = creationDate;
     }
 
-    public List<String> getPassengers() {
+    public String getPassengers() {
         return passengers;
     }
 
-    public void setPassengers(List<String> passengers) {
+    public void setPassengers(String passengers) {
         this.passengers = passengers;
     }
 }
